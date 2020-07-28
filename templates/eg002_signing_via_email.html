@@ -1,0 +1,97 @@
+{% extends "base.html" %}  {% block content %}
+
+<h4>2. Send an envelope with a remote (email) signer and cc recipient</h4>
+<p>The envelope includes a pdf, Word, and HTML document. Anchor text
+    (<a href="https://support.docusign.com/en/guides/AutoPlace-New-DocuSign-Experience">AutoPlace</a>)
+    is used to position the signing fields in the documents.
+</p>
+<p>This is a general example of creating and sending an envelope (a signing request) to multiple recipients,
+    with multiple documents, and with signature fields for the documents.</p>
+
+{% if show_doc %}
+<p><a target='_blank' href='{{ documentation | raw }}'>Documentation</a> about this example.</p>
+{% endif %}
+
+<p>API method used:
+    <a target='_blank' href="https://developers.docusign.com/esign-rest-api/reference/Envelopes/Envelopes/create">Envelopes::create</a>.
+</p>
+
+<p>
+    View source file <a target="_blank" href="{{ source_url | raw }}">{{ source_file }}</a> on GitHub.
+</p>
+
+<form class="eg" action="" method="post" data-busy="form" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="signer_email">Student Email</label>
+        <input type="email" class="form-control" id="signer_email" name="signer_email"
+               aria-describedby="emailHelp" placeholder="pat@example.com" required
+               value="{{ signer_email }}">
+        <small id="emailHelp" class="form-text text-muted">We'll never share any of your emails with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="signer_name">Student Name</label>
+        <input type="text" class="form-control" id="signer_name" placeholder="Pat Johnson" name="signer_name"
+               value="{{ signer_name }}" required>
+
+    </div>
+    <div class="form-group">
+        <label for="signer2_email">Vocational Trainer Email</label>
+        <input type="email" class="form-control" id="signer2_email" name="signer2_email"
+               aria-describedby="emailHelp" placeholder="pat@example.com" required
+               value="{{ signer2_email }}">
+            </div>
+    <div class="form-group">
+        <label for="signer2_name">Vocational Trainer Name</label>
+        <input type="text" class="form-control" id="signer2_name" placeholder="Pat Johnson" name="signer2_name"
+               value="{{ signer2_name }}" required>
+
+    </div>
+    <div class="form-group">
+        <label for="signer3_email">Supervisor Email</label>
+        <input type="email" class="form-control" id="signer3_email" name="signer3_email"
+               aria-describedby="emailHelp" placeholder="pat@example.com" required
+               value="{{ signer3_email }}">
+
+    </div>
+    <div class="form-group">
+        <label for="signer3_name">Supervisor Name</label>
+        <input type="text" class="form-control" id="signer3_name" placeholder="Pat Johnson" name="signer3_name"
+               value="{{ signer3_name }}" required>
+
+    </div>
+    <div class="form-group">
+        <label for="signer4_email">Dean Email</label>
+        <input type="email" class="form-control" id="signer4_email" name="signer4_email"
+               aria-describedby="emailHelp" placeholder="pat@example.com" required
+               value="{{ signer4_email }}">
+
+    </div>
+    <div class="form-group">
+        <label for="signer4_name">Dean Name</label>
+        <input type="text" class="form-control" id="signer4_name" placeholder="Pat Johnson" name="signer4_name"
+               value="{{ signer4_name }}" required>
+
+    </div>
+    <!--    <div class="form-group">
+        <label for="cc_email">CC Email</label>
+        <input type="email" class="form-control" id="cc_email" name="cc_email"
+               aria-describedby="emailHelp" placeholder="pat@example.com" required>
+        <small id="emailHelpCC" class="form-text text-muted">The email for the cc recipient must be different from the
+            signer's email.</small>
+    </div>
+  <div class="form-group">
+          <label for="cc_name">CC Name</label>
+          <input type="text" class="form-control" id="cc_name" placeholder="Pat Johnson" name="cc_name"
+                 required>
+
+      </div>-->
+    <div class="form-group">
+        <label for="upload">Upload Document</label>
+        <input type="file" class="form-control" name="upload" id="upload"
+               required>
+    </div>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <button type="submit" class="btn btn-docu" >Submit</button>
+</form>
+
+{% endblock %}
